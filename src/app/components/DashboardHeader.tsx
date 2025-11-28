@@ -3,9 +3,11 @@
 import { Sparkles } from 'lucide-react'
 import { usePathname } from "next/navigation";
 import Link from 'next/link';
+import { SignedIn, UserButton, useUser } from '@clerk/nextjs';
 
 const DashboardHeader = () => {
   const pathname = usePathname();
+  const {user}  = useUser();
 
   return (
     <header className="w-full py-6 px-6 sm:px-12 flex items-center justify-between">
@@ -46,7 +48,16 @@ const DashboardHeader = () => {
             >
                 Agencies
             </Link>
-        </nav>
+            {/* <SignedIn>
+              <UserButton />
+            </SignedIn> */}
+            <SignedIn>
+              <div className="flex items-center gap-2">
+              <span className="hidden sm:inline hover:bg-indigo-700 ">{user?.firstName}</span>
+              <UserButton />
+              </div>
+              </SignedIn>
+            </nav>
 
       </header>
   )
