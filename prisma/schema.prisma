@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Agency {
+  id                   String    @id @default(uuid())
+  name                 String
+  state                String?
+  stateCode            String?   @map("state_code")
+  type                 String?
+  population           BigInt?
+  website              String?
+  
+  totalSchools         Int?      @map("total_schools")
+  totalStudents        Int?      @map("total_students")
+  mailingAddress       String?   @map("mailing_address")
+  gradeSpan            String?   @map("grade_span")
+  locale               String?
+  csaCbsa              String?   @map("csa_cbsa")
+  domainName           String?   @map("domain_name")
+  physicalAddress      String?   @map("physical_address")
+  phone                String?
+  status               String?
+  studentTeacherRatio  String?   @map("student_teacher_ratio")
+  supervisoryUnion     String?   @map("supervisory_union")
+  county               String?
+  
+  createdAt            DateTime  @default(now()) @map("created_at")
+  updatedAt            DateTime  @updatedAt @map("updated_at")
+  
+  contacts             Contact[]
+  
+  @@index([state])
+  @@index([stateCode])
+  @@map("agencies")
+}
+
+model Contact {
+  id               String    @id @default(uuid())
+  firstName        String    @map("first_name")
+  lastName         String    @map("last_name")
+  email            String?
+  phone            String?
+  title            String?
+  emailType        String?   @map("email_type")
+  contactFormUrl   String?   @map("contact_form_url")
+  department       String?
+  
+  agencyId         String    @map("agency_id")
+  firmId           String?   @map("firm_id")
+  
+  createdAt        DateTime  @default(now()) @map("created_at")
+  updatedAt        DateTime  @updatedAt @map("updated_at")
+  
+  agency           Agency    @relation(fields: [agencyId], references: [id])
+  views            ContactView[]
+  
+  @@index([agencyId])
+  @@index([email])
+  @@map("contacts")
+}
+
+model ContactView {
+  id         String   @id @default(uuid())
+  userId     String   @map("user_id")
+  contactId  String   @map("contact_id")
+  viewedAt   DateTime @default(now()) @map("viewed_at")
+  
+  contact    Contact  @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  
+  @@index([userId, viewedAt])
+  @@index([contactId])
+  @@map("contact_views")
+}
+
+// model User {
+//   id        String   @id @default(uuid())
+//   clerkId   String   @unique @map("clerk_id")
+//   email     String?
+//   name      String?
+//   createdAt DateTime @default(now()) @map("created_at")
+//   updatedAt DateTime @updatedAt @map("updated_at")
+
+//   views     ContactView[]
+
+//   @@map("users")
+// }
