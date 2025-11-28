@@ -53,7 +53,7 @@ const DashboardHeader = () => {
             </SignedIn> */}
             <SignedIn>
               <div className="flex items-center gap-2">
-              <span className="hidden sm:inline hover:bg-indigo-700 ">{user?.firstName}</span>
+              <span className="hidden sm:inline text-md font-bold p-2 rounded-full hover:bg-indigo-700 ">{user?.firstName}</span>
               <UserButton />
               </div>
               </SignedIn>
