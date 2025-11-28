@@ -3,13 +3,14 @@ import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import React from 'react';
 import { Sparkles } from 'lucide-react';
+import { SignedIn, UserButton } from '@clerk/nextjs';
 
 export default async function Home() {
-  const { userId } = await auth();
+  // const { userId } = await auth();
 
-  if (userId) {
-    redirect('/dashboard');
-  }
+  // if (userId) {
+  //   redirect('/dashboard');
+  // }
 
   return (
     <main className="min-h-screen bg-slate-900 text-slate-100 flex flex-col">
@@ -41,6 +42,9 @@ export default async function Home() {
           >
             Create account
           </Link>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </nav>
       </header>
 

@@ -5,10 +5,11 @@ import { auth } from "@clerk/nextjs/server";
 import { Sparkles } from "lucide-react";
 import Link from "next/link";
 import DashboardHeader from "../components/DashboardHeader";
+import { redirect } from "next/navigation";
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  // const { userId } = await auth();
-  // if (!userId) redirect("/sign-in?redirect=/dashboard");
+  const { userId } = await auth();
+  if (!userId) redirect("/sign-in?redirect=/dashboard");
 
   return (
 
