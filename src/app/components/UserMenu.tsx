@@ -37,15 +37,32 @@ export function UserMenu() {
           <span className="hidden sm:inline text-sm font-medium text-slate-300">
             {user?.firstName || user?.username || 'User'}
           </span>
-          <UserButton
+         <UserButton
             appearance={{
               elements: {
+                // Avatar
                 avatarBox: "w-9 h-9",
-                userButtonPopoverCard: "bg-slate-800 border-slate-700",
-                userButtonPopoverActionButton: "hover:bg-slate-700",
+                
+                // Dropdown card
+                // userButtonPopoverCard: "bg-slate-800 border border-slate-700 shadow-2xl",
+                // userButtonPopoverMain: "bg-slate-800",
+                
+                // // User info section
+                // userButtonPopoverActionButton: "hover:bg-slate-700 text-slate-100",
+                // userButtonPopoverActionButtonText: "text-slate-100",
+                // userButtonPopoverActionButtonIcon: "text-slate-400",
+                
+                // Footer with account management
+                // userButtonPopoverFooter: "hidden", // Hide "Manage account" footer
+                
+                // // Individual menu items
+                // userPreviewMainIdentifier: "text-white font-semibold",
+                // userPreviewSecondaryIdentifier: "text-slate-400",
+                
+                // Divider
+                // userButtonPopoverActionButtonDivider: "bg-slate-700",
               },
             }}
-            afterSignOutUrl="/"
           />
         </div>
       </SignedIn>
