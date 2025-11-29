@@ -32,7 +32,7 @@ export function ContactCard({ contact, userId, isBlurred, index }: ContactCardPr
     setIsRecording(true);
     try {
       // Record the view
-      await fetch('/api/contacts/view', {
+      await fetch('/api/contacts/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ contactId: contact.id }),
