@@ -10,7 +10,7 @@ export function UpgradeModal() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="mt-3 bg-linear-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-200 flex items-center gap-2"
+        className="mt-3 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-200 flex items-center gap-2"
       >
         <Crown className="w-5 h-5" />
         Upgrade Now
@@ -29,7 +29,7 @@ export function UpgradeModal() {
 
             {/* Header */}
             <div className="p-8 text-center border-b border-slate-700">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-linear-to-br from-yellow-500 to-orange-500 rounded-2xl mb-4">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl mb-4">
                 <Crown className="w-8 h-8 text-white" />
               </div>
               <h2 className="text-3xl font-bold text-white mb-2">Upgrade to Premium</h2>
@@ -38,7 +38,7 @@ export function UpgradeModal() {
 
             {/* Pricing */}
             <div className="p-8">
-              <div className="bg-linear-to-br from-slate-700 to-slate-800 rounded-xl p-8 border border-slate-600">
+              <div className="bg-gradient-to-br from-slate-700 to-slate-800 rounded-xl p-8 border border-slate-600">
                 <div className="flex items-baseline justify-center gap-2 mb-6">
                   <span className="text-5xl font-bold text-white">$29</span>
                   <span className="text-slate-400">/month</span>
@@ -69,7 +69,7 @@ export function UpgradeModal() {
                 </ul>
 
                 {/* CTA Button */}
-                <button className="w-full bg-linear-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold py-4 rounded-xl transition-all duration-200 flex items-center justify-center gap-2">
+                <button className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold py-4 rounded-xl transition-all duration-200 flex items-center justify-center gap-2">
                   <Crown className="w-5 h-5" />
                   Upgrade to Premium
                 </button>

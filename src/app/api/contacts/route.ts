@@ -6,7 +6,10 @@ export async function GET(request: Request) {
   try {
     const { userId } = await auth();
     if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json({ 
+        error: 'Unauthorized' }, { 
+        status: 401 
+      });
     }
 
     const { searchParams } = new URL(request.url);
@@ -117,13 +120,19 @@ export async function POST(request: Request) {
   try {
     const { userId } = await auth();
     if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json({ 
+        error: 'Unauthorized' }, { 
+        status: 401 
+      });
     }
 
     const { contactId } = await request.json();
 
     if (!contactId) {
-      return NextResponse.json({ error: 'Contact ID required' }, { status: 400 });
+      return NextResponse.json({ 
+        error: 'Contact ID required' }, { 
+        status: 400 
+      });
     }
 
     // Check today's view count

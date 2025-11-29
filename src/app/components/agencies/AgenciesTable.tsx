@@ -106,7 +106,6 @@ export function AgenciesTable() {
         
         const data = await response.json();
         
-        // Check if data has the expected structure
         if (data.error) {
           console.error('API Error:', data.error);
           return;
@@ -139,7 +138,7 @@ export function AgenciesTable() {
 
   const handleLimitChange = (newLimit: string) => {
     setLimit(parseInt(newLimit));
-    setPage(1); // Reset to first page when changing limit
+    setPage(1);
   };
 
   return (
@@ -157,20 +156,6 @@ export function AgenciesTable() {
               className="pl-10 bg-slate-900 border-slate-700 text-white placeholder:text-slate-500"
             />
           </div>
-
-          {/* State Filter */}
-          {/* <Select value={state} onValueChange={setState}>
-            <SelectTrigger className="bg-slate-900 border-slate-700 text-white">
-              <SelectValue placeholder="Filter by state" />
-            </SelectTrigger>
-            <SelectContent className="bg-slate-900 border-slate-700">
-              <SelectItem value=" ">All States</SelectItem>
-              <SelectItem value="CA">California</SelectItem>
-              <SelectItem value="TX">Texas</SelectItem>
-              <SelectItem value="NY">New York</SelectItem>
-              <SelectItem value="FL">Florida</SelectItem>
-            </SelectContent>
-          </Select> */}
 
           {/* Sort By */}
           <Select value={sortBy} onValueChange={setSortBy}>
@@ -288,24 +273,6 @@ export function AgenciesTable() {
                       {agency.population}
                     </span>
                   </TableCell>
-
-                  {/* Stats
-                  <TableCell className="text-slate-300">
-                    <div className="space-y-1">
-                      {agency.totalSchools && (
-                        <div className="flex items-center gap-2 text-xs">
-                          <School className="w-3 h-3 text-cyan-400" />
-                          <span>{agency.totalSchools.toLocaleString()} schools</span>
-                        </div>
-                      )}
-                      {agency.totalStudents && (
-                        <div className="flex items-center gap-2 text-xs">
-                          <Users className="w-3 h-3 text-green-400" />
-                          <span>{agency.totalStudents.toLocaleString()} students</span>
-                        </div>
-                      )}
-                    </div>
-                  </TableCell> */}
 
                   {/* Contacts Count */}
                   <TableCell className="text-slate-300">

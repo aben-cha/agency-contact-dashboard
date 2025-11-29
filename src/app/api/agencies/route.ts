@@ -7,14 +7,13 @@ import { prisma } from '@/src/app/lib/prisma';
 
 export async function GET(req: Request) {
   try {
-    // Authentication check
-    // const { userId } = await auth();
-    // if (!userId) {
-    //   return NextResponse.json(
-    //     { error: 'Unauthorized' },
-    //     { status: 401 }
-    //   );
-    // }
+    const { userId } = await auth();
+    if (!userId) {
+      return NextResponse.json({ 
+        error: 'Unauthorized' }, { 
+        status: 401 
+      });
+    }
 
     // Parse query parameters
     const { searchParams } = new URL(req.url);

@@ -215,7 +215,7 @@ export function ContactsTable() {
   return (
     <div className="space-y-4">
       {/* Usage Stats */}
-      <div className="bg-linear-to-r from-purple-900/20 to-indigo-900/20 rounded-xl p-6 border border-purple-700/30">
+      <div className="bg-gradient-to-r from-purple-900/20 to-indigo-900/20 rounded-xl p-6 border border-purple-700/30">
         <div className="flex items-center justify-between mb-4">
           <div>
             <h3 className="text-lg font-semibold text-white">Daily Contact Views</h3>

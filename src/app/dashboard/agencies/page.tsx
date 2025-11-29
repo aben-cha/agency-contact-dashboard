@@ -1,12 +1,14 @@
+"use client";
+
 import { Suspense } from 'react';
-import { AgenciesTable } from '../../components/AgenciesTable';
+import { AgenciesTable } from '@/src/app/components/agencies/AgenciesTable';
 import { Building2 } from 'lucide-react';
-import { AgenciesTableSkeleton } from '../../components/AgenciesTableSkeleton';
+import { AgenciesTableSkeleton } from '@/src/app/components/agencies/AgenciesTableSkeleton';
 
 export default function AgenciesPage() {
+  
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-white flex items-center gap-3">
