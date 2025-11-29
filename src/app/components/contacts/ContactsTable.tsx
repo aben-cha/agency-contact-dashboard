@@ -33,7 +33,6 @@ import {
   AlertCircle,
   Crown
 } from 'lucide-react';
-// import { UpgradeModal } from './UpgradeModal';
 import { UpgradeModal } from '@/src/app/components/UpgradeModal';
 
 interface Contact {
@@ -92,47 +91,6 @@ export function ContactsTable() {
     return () => clearTimeout(timer);
   }, [search]);
 
-  // // Fetch contacts
-  // useEffect(() => {
-  //   const fetchContacts = async () => {
-  //     setLoading(true);
-  //     try {
-  //       const params = new URLSearchParams({
-  //         page: page.toString(),
-  //         limit: limit.toString(),
-  //         ...(debouncedSearch && { search: debouncedSearch }),
-  //         ...(state && { state }),
-  //         sortBy,
-  //         sortOrder,
-  //       });
-
-  //       const response = await fetch(`/api/contacts?${params}`);
-  //       console.log("response: ", response);
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP error! status: ${response.status}`);
-  //       }
-        
-  //       const data = await response.json();
-        
-  //       if (data.error) {
-  //         console.error('API Error:', data.error);
-  //         return;
-  //       }
-
-  //       setContacts(data.data || []);
-  //       setTotalCount(data.pagination?.total || 0);
-  //       setTotalPages(data.pagination?.totalPages || 0);
-  //       setUsage(data.usage || usage);
-  //     } catch (error) {
-  //       console.error('Error fetching contacts:', error);
-  //       setContacts([]);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchContacts();
-  // }, [page, limit, debouncedSearch, state, sortBy, sortOrder]);
   useEffect(() => {
     const fetchContacts = async () => {
       setLoading(true);
@@ -147,7 +105,6 @@ export function ContactsTable() {
         });
 
         const response = await fetch(`/api/contacts?${params}`);
-        console.log("response: ", response);
         
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -317,19 +274,7 @@ export function ContactsTable() {
             />
           </div>
 
-          {/* State Filter */}
-          <Select value={state} onValueChange={setState}>
-            <SelectTrigger className="bg-slate-900 border-slate-700 text-white">
-              <SelectValue placeholder="Filter by state" />
-            </SelectTrigger>
-            <SelectContent className="bg-slate-900 border-slate-700">
-              <SelectItem value=" ">All States</SelectItem>
-              <SelectItem value="CA">California</SelectItem>
-              <SelectItem value="TX">Texas</SelectItem>
-              <SelectItem value="NY">New York</SelectItem>
-              <SelectItem value="FL">Florida</SelectItem>
-            </SelectContent>
-          </Select>
+
 
           {/* Sort By */}
           <Select value={sortBy} onValueChange={setSortBy}>

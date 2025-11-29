@@ -1,7 +1,6 @@
 import { auth } from '@clerk/nextjs/server';
-import { prisma } from '@//src/app/lib/prisma';
+import { prisma } from '@/src/app/lib/prisma';
 import { NextResponse } from 'next/server';
-
 
 export async function GET(request: Request) {
   try {
@@ -14,27 +13,37 @@ export async function GET(request: Request) {
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '10');
     const search = searchParams.get('search') || '';
-    const state = searchParams.get('state') || '';
+    const state = searchParams.get('state')?.trim() || '';
     const sortBy = searchParams.get('sortBy') || 'firstName';
-    const sortOrder = searchParams.get('sortOrder') || 'desc';
+    const sortOrder = (searchParams.get('sortOrder') || 'asc') as 'asc' | 'desc';
 
     const skip = (page - 1) * limit;
 
     // Build where clause
     const where: any = {};
+    
+    // Search filter
     if (search) {
       where.OR = [
         { firstName: { contains: search, mode: 'insensitive' } },
         { lastName: { contains: search, mode: 'insensitive' } },
         { email: { contains: search, mode: 'insensitive' } },
-        { company: { contains: search, mode: 'insensitive' } },
+        { title: { contains: search, mode: 'insensitive' } },
       ];
     }
-    if (state) {
-      where.state = state;
+    
+    // State filter - filter through agency relationship
+    // Check both state and stateCode fields
+    if (state && state !== ' ' && state !== '') {
+      where.agency = {
+        OR: [
+          { state: state },
+          { stateCode: state },
+        ],
+      };
     }
 
-    // Fetch contacts
+    // Fetch contacts with agency relation
     const [contacts, total] = await Promise.all([
       prisma.contact.findMany({
         where,
@@ -46,6 +55,7 @@ export async function GET(request: Request) {
             select: {
               name: true,
               state: true,
+              stateCode: true,
             },
           },
         },
@@ -92,70 +102,16 @@ export async function GET(request: Request) {
         hasReachedLimit: todayViews >= dailyLimit,
         dailyLimit,
       },
-      viewedContactIds: viewedContactIds.map(v => v.contactId), // Send list of viewed contacts
+      viewedContactIds: viewedContactIds.map(v => v.contactId),
     });
   } catch (error) {
     console.error('Error fetching contacts:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Internal server error', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     );
   }
 }
-
-// export async function POST(request: Request) {
-//   try {
-//     const { userId } = await auth();
-//     console.log("userId: ", userId);
-//     if (!userId) {
-//       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-//     }
-
-//     const { contactId } = await request.json();
-
-//     if (!contactId) {
-//       return NextResponse.json({ error: 'Contact ID required' }, { status: 400 });
-//     }
-
-//     // Check today's view count
-//     const todayStart = new Date(new Date().setHours(0, 0, 0, 0));
-//     const todayViews = await prisma.contactView.count({
-//       where: {
-//         userId,
-//         viewedAt: {
-//           gte: todayStart,
-//         },
-//       },
-//     });
-
-//     // Check if limit reached
-//     if (todayViews >= 50) {
-//       return NextResponse.json(
-//         { error: 'Daily limit reached', limit: 50, current: todayViews },
-//         { status: 429 }
-//       );
-//     }
-
-//     // Record the view
-//     await prisma.contactView.create({
-//       data: {
-//         userId,
-//         contactId,
-//       },
-//     });
-
-//     return NextResponse.json({
-//       success: true,
-//       remaining: 50 - todayViews - 1,
-//     });
-//   } catch (error) {
-//     console.error('Error recording contact view:', error);
-//     return NextResponse.json(
-//       { error: 'Internal server error' },
-//       { status: 500 }
-//     );
-//   }
-// }
 
 export async function POST(request: Request) {
   try {
