@@ -1,7 +1,23 @@
 import { Users, Building2, TrendingUp, Eye } from 'lucide-react';
 import Link from 'next/link';
+import { auth } from '@clerk/nextjs/server';
 
-export default function DashboardPage() {
+import {getDashboardStats} from "@/src/app/lib/queries/dashboard";
+
+export default async function DashboardPage() {
+ const { userId } = await auth();
+
+  if (!userId) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <p className="text-slate-400">Please sign in to view dashboard</p>
+      </div>
+    );
+  }
+
+  const stats = await getDashboardStats(userId);
+  const isNearLimit = (stats.viewsToday / stats.viewsLimit) * 100 >= 80;
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -17,7 +33,7 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-slate-400 text-sm">Total Contacts</p>
-              <p className="text-3xl font-bold text-white mt-2">1,234</p>
+              <p className="text-3xl font-bold text-white mt-2">{stats.contactsCount.toLocaleString()}</p>
             </div>
             <div className="p-3 bg-purple-500/10 rounded-lg">
               <Users className="w-6 h-6 text-purple-400" />
@@ -30,7 +46,9 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-slate-400 text-sm">Total Agencies</p>
-              <p className="text-3xl font-bold text-white mt-2">456</p>
+              <p className="text-3xl font-bold text-white mt-2">
+                {stats.agenciesCount.toLocaleString()}
+              </p>
             </div>
             <div className="p-3 bg-indigo-500/10 rounded-lg">
               <Building2 className="w-6 h-6 text-indigo-400" />
@@ -43,10 +61,29 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-slate-400 text-sm">Views Today</p>
-              <p className="text-3xl font-bold text-white mt-2">12 / 50</p>
+              <p
+                className={`text-3xl font-bold mt-2 ${
+                  isNearLimit ? 'text-orange-400' : 'text-white'
+                }`}
+              >
+                {stats.viewsToday} / {stats.viewsLimit}
+              </p>
+              {isNearLimit && (
+                <p className="text-xs text-orange-400 mt-1">
+                  Approaching limit
+                </p>
+              )}
             </div>
-            <div className="p-3 bg-cyan-500/10 rounded-lg">
-              <Eye className="w-6 h-6 text-cyan-400" />
+            <div
+              className={`p-3 rounded-lg ${
+                isNearLimit ? 'bg-orange-500/10' : 'bg-cyan-500/10'
+              }`}
+            >
+              <Eye
+                className={`w-6 h-6 ${
+                  isNearLimit ? 'text-orange-400' : 'text-cyan-400'
+                }`}
+              />
             </div>
           </div>
         </div>

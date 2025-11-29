@@ -39,30 +39,22 @@ export function UserMenu() {
           </span>
          <UserButton
             appearance={{
-              elements: {
-                // Avatar
-                avatarBox: "w-9 h-9",
-                
-                // Dropdown card
-                // userButtonPopoverCard: "bg-slate-800 border border-slate-700 shadow-2xl",
-                // userButtonPopoverMain: "bg-slate-800",
-                
-                // // User info section
-                // userButtonPopoverActionButton: "hover:bg-slate-700 text-slate-100",
-                // userButtonPopoverActionButtonText: "text-slate-100",
-                // userButtonPopoverActionButtonIcon: "text-slate-400",
-                
-                // Footer with account management
-                // userButtonPopoverFooter: "hidden", // Hide "Manage account" footer
-                
-                // // Individual menu items
-                // userPreviewMainIdentifier: "text-white font-semibold",
-                // userPreviewSecondaryIdentifier: "text-slate-400",
-                
-                // Divider
-                // userButtonPopoverActionButtonDivider: "bg-slate-700",
-              },
-            }}
+          elements: {
+            avatarBox: 
+              'w-10 h-10 border-2 border-slate-700 hover:border-indigo-500 transition-colors',
+            
+            userButtonPopoverCard: 
+              'bg-slate-800 border border-slate-700 shadow-xl',
+            userButtonPopoverActionButton: 
+              'hover:bg-slate-700 text-slate-100',
+            userButtonPopoverActionButtonText: 
+              'text-slate-100',
+            userButtonPopoverActionButtonIcon: 
+              'text-slate-400',
+            userButtonPopoverFooter: 
+              'hidden',
+          },
+        }}
           />
         </div>
       </SignedIn>

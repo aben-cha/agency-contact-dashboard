@@ -60,6 +60,78 @@ body {
 }
 
 
+/* Hide Clerk branding everywhere */
+.cl-footer,
+.cl-footerActionLink,
+.cl-internal-b3fm6y {
+  display: none !important;
+}
+
+/* Ensure cards match your design */
+.cl-card {
+  background-color: #1e293b !important; /* slate-800 */
+  border: 1px solid #334155 !important; /* slate-700 */
+  border-radius: 0.75rem !important; /* rounded-xl */
+}
+
+/* Form inputs matching your theme */
+.cl-formFieldInput {
+  background-color: #334155 !important; /* slate-700 */
+  border-color: #475569 !important; /* slate-600 */
+  color: #f1f5f9 !important; /* slate-100 */
+}
+
+.cl-formFieldInput:focus {
+  border-color: #6366f1 !important; /* indigo-500 */
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1) !important;
+}
+
+/* Primary buttons */
+.cl-formButtonPrimary {
+  background-color: #6366f1 !important; /* indigo-500 */
+}
+
+.cl-formButtonPrimary:hover {
+  background-color: #4f46e5 !important; /* indigo-600 */
+}
+
+/* Social buttons */
+.cl-socialButtonsBlockButton {
+  background-color: #334155 !important; /* slate-700 */
+  border-color: #475569 !important; /* slate-600 */
+  color: #f1f5f9 !important; /* slate-100 */
+}
+
+.cl-socialButtonsBlockButton:hover {
+  background-color: #475569 !important; /* slate-600 */
+}
+
+/* Links */
+.cl-footerActionLink,
+.cl-otpCodeFieldInput {
+  color: #818cf8 !important; /* indigo-400 */
+}
+
+/* Dividers */
+.cl-dividerLine {
+  background-color: #334155 !important; /* slate-700 */
+}
+
+.cl-dividerText {
+  color: #94a3b8 !important; /* slate-400 */
+}
+
+/* User button dropdown */
+.cl-userButtonPopoverCard {
+  background-color: #1e293b !important; /* slate-800 */
+  border: 1px solid #334155 !important; /* slate-700 */
+}
+
+.cl-userButtonPopoverActionButton:hover {
+  background-color: #334155 !important; /* slate-700 */
+}
+
+
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
