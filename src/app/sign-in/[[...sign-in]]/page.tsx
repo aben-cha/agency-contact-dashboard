@@ -1,7 +1,7 @@
 'use client';
 
-import { SignIn } from '@clerk/nextjs';
 import LogoMark from '@/src/app/components/LogoMark';
+import SignInComponent from '../../components/SignInComponent';
 
 export default function SignInPage() {
   return (
@@ -11,8 +11,8 @@ export default function SignInPage() {
         {/* Logo & Heading */}
         <LogoMark />
 
-        {/* SignIn Form */}
-        <SignIn
+       <SignInComponent />
+        {/* <SignIn
           routing="path"
           path="/sign-in"
           signUpUrl="/sign-up"
@@ -49,7 +49,7 @@ export default function SignInPage() {
               // colorBackground: 'bg-slate-900',
             },
           }}
-        />
+        /> */}
       </div>
     </div>
   );

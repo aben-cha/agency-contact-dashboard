@@ -1,19 +1,10 @@
 "use client";
 
 import { Sparkles } from 'lucide-react'
-import { redirect, usePathname } from "next/navigation";
-import Link from 'next/link';
-import { SignedIn, UserButton, useUser } from '@clerk/nextjs';
 import { UserMenu } from './UserMenu';
+import Navbar from './Navbar';
 
 const DashboardHeader = () => {
-  const pathname = usePathname();
-  const {user}  = useUser();
-
-  if (!user)  {
-    redirect('/sign-in');
-  }
-
   return (
     <header className="w-full py-6 px-6 sm:px-12 flex items-center justify-between">
         <div className="flex items-center gap-4">
@@ -29,40 +20,9 @@ const DashboardHeader = () => {
           </h1>
         </div>
 
-        <nav className="flex items-center gap-4">
-          <Link
-              href="/dashboard/contacts"
-              className={`hidden sm:inline-block text-md font-bold px-4 py-2 text-white rounded-lg shadow transition
-              ${
-                  pathname === "/dashboard/contacts"
-                  ? "bg-indigo-700"
-                  : "hover:bg-indigo-700"
-              }`}
-          >
-              Contacts
-          </Link>
+        <Navbar />
 
-          <Link
-              href="/dashboard/agencies"
-              className={`hidden sm:inline-block text-md font-bold px-4 py-2 text-white rounded-lg shadow transition
-              ${
-                  pathname === "/dashboard/agencies"
-                  ? "bg-indigo-700"
-                  : "hover:bg-indigo-700"
-              }`}
-          >
-              Agencies
-          </Link>
-
-          {/* <SignedIn>
-            <div className="flex items-center gap-2">
-            <span className="hidden sm:inline text-md font-bold p-2 rounded-full hover:bg-indigo-700 ">{user?.firstName}</span>
-            <UserButton />
-            </div>
-          </SignedIn> */}
-          <UserMenu />
-        </nav>
-
+        <UserMenu/>
       </header>
   )
 }

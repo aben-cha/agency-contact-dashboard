@@ -4,8 +4,15 @@ import { SignedIn, SignedOut, UserButton, useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 
 export function UserMenu() {
-  const { user } = useUser();
+  const { user, isLoaded } = useUser();
 
+  if (!isLoaded) {
+    return (
+      <div className="flex items-center gap-2">
+        <div className="w-9 h-9 rounded-full bg-slate-700 animate-pulse" />
+      </div>
+    );
+  }
   return (
     <>
       <SignedOut>
