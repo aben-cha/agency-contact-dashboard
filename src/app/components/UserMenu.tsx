@@ -2,6 +2,7 @@
 
 import { SignedIn, SignedOut, UserButton, useUser } from '@clerk/nextjs';
 import Link from 'next/link';
+import { userButtonAppearance } from '../lib/clerk-theme';
 
 export function UserMenu() {
   const { user, isLoaded } = useUser();
@@ -37,25 +38,8 @@ export function UserMenu() {
           <span className="hidden sm:inline text-sm font-medium text-slate-300">
             {user?.firstName || user?.username || 'User'}
           </span>
-         <UserButton
-            appearance={{
-          elements: {
-            avatarBox: 
-              'w-10 h-10 border-2 border-slate-700 hover:border-indigo-500 transition-colors',
-            
-            userButtonPopoverCard: 
-              'bg-slate-800 border border-slate-700 shadow-xl',
-            userButtonPopoverActionButton: 
-              'hover:bg-slate-700 text-slate-100',
-            userButtonPopoverActionButtonText: 
-              'text-slate-100',
-            userButtonPopoverActionButtonIcon: 
-              'text-slate-400',
-            userButtonPopoverFooter: 
-              'hidden',
-          },
-        }}
-          />
+          
+          <UserButton appearance={userButtonAppearance} />
         </div>
       </SignedIn>
     </>
