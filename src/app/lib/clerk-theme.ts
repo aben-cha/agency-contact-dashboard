@@ -75,7 +75,7 @@ export const clerkAppearance: Appearance = {
 };
 
 export const userButtonAppearance: Appearance = {
-  baseTheme: undefined,
+  baseTheme: undefined, // Don't inherit any base theme
   variables: {
     colorPrimary: '#6366f1', // indigo-500
     colorBackground: '#1e293b', // slate-800 for dropdown
@@ -124,9 +124,17 @@ export const userButtonAppearance: Appearance = {
     userButtonPopoverActionButtonIcon: 
       'text-slate-400',
     
-    // Footer section
+    // Footer section - Hide completely
     userButtonPopoverFooter: 
-      'bg-slate-800 border-t border-slate-700 hidden',
+      'hidden',
+    
+    // Hide footer action links
+    userButtonPopoverFooterActionLink: 
+      'hidden',
+    
+    // Hide "Secured by Clerk" text
+    userButtonPopoverFooterText: 
+      'hidden',
     
     // Sign out button
     userButtonPopoverActionButton__signOut: 

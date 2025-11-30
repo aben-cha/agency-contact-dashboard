@@ -60,10 +60,16 @@ body {
 }
 
 
+
 /* Hide Clerk branding everywhere */
 .cl-footer,
 .cl-footerActionLink,
-.cl-internal-b3fm6y {
+.cl-footerActionText,
+.cl-footerText,
+.cl-internal-b3fm6y,
+.cl-userButtonPopoverFooter,
+.cl-userButtonPopoverFooterActionLink,
+.cl-userButtonPopoverFooterText {
   display: none !important;
 }
 
