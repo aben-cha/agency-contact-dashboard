@@ -40,7 +40,7 @@ export function UpgradeModal() {
             <div className="p-8">
               <div className="bg-gradient-to-br from-slate-700 to-slate-800 rounded-xl p-8 border border-slate-600">
                 <div className="flex items-baseline justify-center gap-2 mb-6">
-                  <span className="text-5xl font-bold text-white">$29</span>
+                  <span className="text-5xl font-bold text-white">$25</span>
                   <span className="text-slate-400">/month</span>
                 </div>
 
@@ -49,10 +49,6 @@ export function UpgradeModal() {
                   <li className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-green-400 shrink-0 mt-0.5" />
                     <span className="text-slate-300">Unlimited contact views per day</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-green-400 shrink-0 mt-0.5" />
-                    <span className="text-slate-300">Export contacts to CSV</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-green-400 shrink-0 mt-0.5" />
